@@ -50,6 +50,7 @@ function generateTitleLinks() {
     const articles = document.querySelectorAll(optArticleSelector);
     console.log(articles);
 
+    let html = '';
     for (let article of articles) {
         console.log(article);
 
@@ -60,18 +61,24 @@ function generateTitleLinks() {
 
 
         /* find the title element */
+        /* get the title from the title element */
         // Do znalezienia elementu w konkretnym artykule wykorzystamy querySelector wywołany na artykule.
         const articleTitle = article.querySelector(optTitleSelector).innerHTML;
         console.log(articleTitle);
 
-        /* get the title from the title element */
-
-
         /* create HTML of the link */
+        const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
+        console.log(linkHTML);
+
 
         /* insert link into titleList */
-
+        titleList.insertAdjacentHTML('beforeend', linkHTML);
+        html = html + linkHTML;
     }
+
+    titleList.innerHTML = html;
+
+
 }
 
 // Ta funkcja ma uruchamiać się od razu po odświeżeniu strony,
