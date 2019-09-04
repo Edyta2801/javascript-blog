@@ -52,25 +52,24 @@ function generateTitleLinks() {
 
     for (let article of articles) {
         console.log(article);
+
+        /* get the article id */
+        const articleId = article.getAttribute('id');
+        console.log(articleId);
+
+
+
+        /* find the title element */
+        // const articleTitle = article.querySelector(optTitleSelector).innerHTML;
+        // console.log(articleTitle);
+
+        /* get the title from the title element */
+
+        /* create HTML of the link */
+
+        /* insert link into titleList */
+
     }
-
-
-    /* get the article id */
-    const articleId = articles.getAttribute('id');
-    console.log(articleId);
-
-
-
-    /* find the title element */
-    // const articleTitle = article.querySelector(optTitleSelector).innerHTML;
-    // console.log(articleTitle);
-
-    /* get the title from the title element */
-
-    /* create HTML of the link */
-
-    /* insert link into titleList */
-
 }
 
 // Ta funkcja ma uruchamiać się od razu po odświeżeniu strony,
@@ -78,4 +77,3 @@ function generateTitleLinks() {
 // ani tworzyć listenerów eventów.
 
 generateTitleLinks();
-
