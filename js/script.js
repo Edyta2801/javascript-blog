@@ -41,9 +41,6 @@ function generateTitleLinks() {
     console.log('Title was generated');
 
     /* remove contents of titleList */
-const titleList1=document.querySelector(optTitleListSelector);
-console.log(titleList1);
-// correct code
 const titleList=document.querySelector(optTitleListSelector).innerHTML='';
 console.log(titleList);
 
