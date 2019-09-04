@@ -17,6 +17,7 @@ const titleClickHandler = function (event) {
 
     /* get 'href' attribute from the clicked link */
     const articleSelector = clickedElement.getAttribute('href');
+    console.log(articleSelector);
 
     /* find the correct article using the selector (value of 'href' attribute) */
     const targetArticle = document.querySelector(articleSelector);
@@ -55,8 +56,14 @@ function generateTitleLinks() {
 
 
     /* get the article id */
+    const articleId = articles.getAttribute('id');
+    console.log(articleId);
+
+
 
     /* find the title element */
+    // const articleTitle = article.querySelector(optTitleSelector).innerHTML;
+    // console.log(articleTitle);
 
     /* get the title from the title element */
 
