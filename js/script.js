@@ -34,15 +34,21 @@ for (let link of links) {
 
 
 const optArticleSelector = '.post',
-  optTitleSelector = '.post-title',
-  optTitleListSelector = '.titles';
+    optTitleSelector = '.post-title',
+    optTitleListSelector = '.titles';
 
-function generateTitleLinks(){
+function generateTitleLinks() {
     console.log('Title was generated');
 
-  /* remove contents of titleList */
+    /* remove contents of titleList */
+const titleList1=document.querySelector(optTitleListSelector);
+console.log(titleList1);
+// correct code
+const titleList=document.querySelector(optTitleListSelector).innerHTML='';
+console.log(titleList);
 
-  /* for each article */
+
+    /* for each article */
 
     /* get the article id */
 
@@ -59,7 +65,6 @@ function generateTitleLinks(){
 // Ta funkcja ma uruchamiać się od razu po odświeżeniu strony,
 // więc nie musisz umieszczać wywołania w żadnej dodatkowej funkcji,
 // ani tworzyć listenerów eventów.
-
 
 generateTitleLinks();
 
