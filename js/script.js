@@ -7,8 +7,11 @@ const titleClickHandler = function (event) {
 
     /*[DONE] remove class 'active' from all article links  */
 
-    const activeLinks = document.querySelector('.titles a.active').classList.remove('active');
+    const activeLinks = document.querySelectorAll('.titles a.active');
 
+    for (let activeLink of activeLinks) {
+        activeLink.classList.remove('active');
+    }
     /* [DONE] add class 'active' to the clicked link */
     clickedElement.classList.add('active');
 
@@ -26,13 +29,8 @@ const titleClickHandler = function (event) {
     targetArticle.classList.add('active');
 }
 
-const links = document.querySelectorAll('.titles a');
-console.log(links);
-for (let link of links) {
-    link.addEventListener('click', titleClickHandler);
-}
 
-
+// GENERATE TITLES LINKS
 
 const optArticleSelector = '.post',
     optTitleSelector = '.post-title',
@@ -42,8 +40,10 @@ function generateTitleLinks() {
     console.log('Title was generated');
 
     /* remove contents of titleList */
-    const titleList = document.querySelector(optTitleListSelector).innerHTML = '';
+    const titleList = document.querySelector(optTitleListSelector);
     console.log(titleList);
+
+    clearTitleList();
 
 
     /* for each article */
@@ -51,6 +51,7 @@ function generateTitleLinks() {
     console.log(articles);
 
     let html = '';
+
     for (let article of articles) {
         console.log(article);
 
@@ -73,16 +74,25 @@ function generateTitleLinks() {
 
         /* insert link into titleList */
         titleList.insertAdjacentHTML('beforeend', linkHTML);
+
         html = html + linkHTML;
     }
 
     titleList.innerHTML = html;
 
+    const links = document.querySelectorAll('.titles a');
 
+    for (let link of links) {
+        link.addEventListener('click', titleClickHandler);
+    }
 }
-
 // Ta funkcja ma uruchamiać się od razu po odświeżeniu strony,
 // więc nie musisz umieszczać wywołania w żadnej dodatkowej funkcji,
 // ani tworzyć listenerów eventów.
 
 generateTitleLinks();
+
+function clearTitleList() {
+    document.querySelector(optTitleListSelector).innerHTML = '';
+}
+
