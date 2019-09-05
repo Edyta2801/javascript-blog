@@ -17,6 +17,7 @@ const titleClickHandler = function (event) {
 
     /*[DONE] remove class 'active' from all articles */
     const activeArticles = document.querySelector('.posts article.active').classList.remove('active');
+    console.log(activeArticles);
 
     /* get 'href' attribute from the clicked link */
     const articleSelector = clickedElement.getAttribute('href');
