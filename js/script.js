@@ -35,7 +35,12 @@ const titleClickHandler = function (event) {
 
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
-  optTitleListSelector = '.titles';
+  optTitleListSelector = '.titles',
+  optArticleTagsSelector= '.post-tags .list',
+  
+
+
+
 
 function generateTitleLinks() {
   console.log('Title was generated');
