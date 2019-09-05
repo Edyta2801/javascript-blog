@@ -96,4 +96,3 @@ generateTitleLinks();
 function clearTitleList() {
     document.querySelector(optTitleListSelector).innerHTML = '';
 }
-
