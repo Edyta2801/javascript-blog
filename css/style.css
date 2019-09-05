@@ -1,7 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Oswald:400,600|Sacramento|Source+Sans+Pro:300&subset=latin-ext");
 /* Variables */
 /* Global */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -49,7 +51,8 @@ body {
       flex: 2 0 0;
 }
 
-.sidebar, .posts {
+.sidebar,
+.posts {
   background: #fff;
   margin-right: 10px;
   padding: 40px;
@@ -88,11 +91,16 @@ body {
 
 /* Post */
 .post {
-  display: none;
+  position: absolute;
+  opacity: 0;
 }
 
 .post.active {
-  display: block;
+  z-index: 1;
+  opacity: 1;
+  position: relative;
+  transition: all 3s;
+  background: rgba(0, 0, 0, 0.05);
 }
 
 .post-author {
