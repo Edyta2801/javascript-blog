@@ -42,7 +42,7 @@ const optArticleSelector = '.post',
 
 
 
-function generateTitleLinks() {
+function generateTitleLinks(customSelector='') {
   console.log('Title was generated');
 
   /* remove contents of titleList */
@@ -53,7 +53,7 @@ function generateTitleLinks() {
 
 
   /* for each article */
-  const articles = document.querySelectorAll(optArticleSelector);
+  const articles = document.querySelectorAll(optArticleSelector + customSelector);
   console.log(articles);
 
   let html = '';
@@ -163,7 +163,7 @@ function tagClickHandler(event) {
   /* make new constant named "clickedElement" and give it the value of "this" */
   const clickedElement = this;
   /* make a new constant "href" and read the attribute "href" of the clicked element */
-  const href = clickedElement.getAttribute('href)';
+  const href = clickedElement.getAttribute('href');
   /* make a new constant "tag" and extract tag from the "href" constant */
   const tag = href.replace('#tag-', '');
   /* find all tag links with class active */
