@@ -200,3 +200,46 @@ function addClickListenersToTags() {
 }
 
 addClickListenersToTags();
+
+
+// GENERATE AUTHORS
+
+function generateAuthors() {
+  /* find all authors */
+
+  /* START LOOP: for every author: */
+  {
+
+    /* find authors wrapper */
+
+    /* make html variable with empty string */
+
+    /* get authors from data-authors attribute */
+
+    /* generate HTML of the link of authors*/
+
+    /* add generated code to html variable */
+
+    /* insert HTML of all the links into the tags wrapper */
+
+    /* END LOOP: for every article: */
+  }
+}
+generateAuthors();
+
+function addClickListenersToAuthors() {
+  /* find all links to tags */
+  const authorsLinks = document.querySelectorAll('href');
+  /* START LOOP: for each link */
+  for (let authorsLink of authorsLinks) {
+
+    /* add tagClickHandler as event listener for that link */
+    authorsLink.addEventListener('click', authorClickHandler);
+  }
+  /* END LOOP: for each link */
+}
+
+addClickListenersToAuthors();
+
+
+
