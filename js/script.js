@@ -36,7 +36,8 @@ const titleClickHandler = function (event) {
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles',
-  optArticleTagsSelector = '.post-tags .list';
+  optArticleTagsSelector = '.post-tags .list',
+  optArticleAuthorSelector = '.post-author';
 
 
 
@@ -206,6 +207,8 @@ addClickListenersToTags();
 
 function generateAuthors() {
   /* find all authors */
+  const authors = document.querySelectorAll(optArticleAuthorSelector);
+  console.log('Authors', authors);
 
   /* START LOOP: for every author: */
   {
@@ -234,6 +237,7 @@ function addClickListenersToAuthors() {
   for (let authorsLink of authorsLinks) {
 
     /* add tagClickHandler as event listener for that link */
+    // eslint-disable-next-line no-undef
     authorsLink.addEventListener('click', authorClickHandler);
   }
   /* END LOOP: for each link */
