@@ -33,11 +33,12 @@ const titleClickHandler = function (event) {
 
 // GENERATE TITLES LINKS
 
+
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles',
   optArticleTagsSelector = '.post-tags .list',
-  optArticleAuthorSelector = '.post-author';
+  optArticleAuthorSelector = '.post p.post-author';
 
 
 
@@ -211,20 +212,22 @@ function generateAuthors() {
   console.log('Authors', authors);
 
   /* START LOOP: for every author: */
-  {
+  for (let author of authors) {
+    console.log(author);
 
     /* find authors wrapper */
-
+    const authorWrapper = document.querySelector(optArticleAuthorSelector);
     /* make html variable with empty string */
-
+    let html = '';
     /* get authors from data-authors attribute */
-
+    const articleAuthor = author.getAttribute('data-author');
+    console.log('get authors from attribute', articleAuthor);
     /* generate HTML of the link of authors*/
-
+    const authorHTML = '<a href="#' + author + '">' + author + '</a>';
     /* add generated code to html variable */
-
+    html = html + authorHTML;
     /* insert HTML of all the links into the tags wrapper */
-
+    authorWrapper.innerHTML = html;
     /* END LOOP: for every article: */
   }
 }
