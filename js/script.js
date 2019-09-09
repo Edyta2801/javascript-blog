@@ -228,7 +228,7 @@ function generateAuthors() {
     html = html + authorHTML;
     /* insert HTML of all the links into the tags wrapper */
     authorWrapper.innerHTML = html;
-    /* END LOOP: for every article: */
+    /* END LOOP: for every author: */
   }
 }
 generateAuthors();
