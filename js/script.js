@@ -217,17 +217,18 @@ function generateAuthors() {
 
     /* find authors wrapper */
     const authorWrapper = document.querySelector(optArticleAuthorSelector);
+    console.log("AuthorWrapper",authorWrapper);
     /* make html variable with empty string */
     let html = '';
     /* get authors from data-authors attribute */
     const articleAuthor = author.getAttribute('data-author');
     console.log('get authors from attribute', articleAuthor);
     /* generate HTML of the link of authors*/
-    const authorHTML = '<a href="#' + author + '">' + author + '</a>';
+    const authorHTML = '<a href="#' + articleAuthor + '">' + articleAuthor + '</a>';
     /* add generated code to html variable */
     html = html + authorHTML;
     /* insert HTML of all the links into the tags wrapper */
-    authorWrapper.innerHTML = html;
+    author.innerHTML = html;
     /* END LOOP: for every author: */
   }
 }
@@ -240,13 +241,15 @@ function addClickListenersToAuthors() {
   for (let authorsLink of authorsLinks) {
 
     /* add tagClickHandler as event listener for that link */
-    // eslint-disable-next-line no-undef
     authorsLink.addEventListener('click', authorClickHandler);
   }
   /* END LOOP: for each link */
 }
 
 addClickListenersToAuthors();
+
+
+
 
 
 
