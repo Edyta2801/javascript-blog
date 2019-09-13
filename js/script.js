@@ -293,7 +293,7 @@ function authorClickHandler(event) {
   /* execute function "generateTitleLinks" with authore selector as argument */
   generateTitleLinks('[data-author="' + author + '"]');
 }
-authorClickHandler();
+// authorClickHandler();
 
 
 
