@@ -174,7 +174,7 @@ function tagClickHandler(event) {
   for (let activeTagLink of activeTagLinks) {
     console.log(activeTagLink);
     /* remove class active */
-    activeTagLinks.classList.remove('active');
+    activeTagLink.classList.remove('active');
     /* END LOOP: for each active tag link */
   }
   /* find all tag links with "href" attribute equal to the "href" constant */
@@ -216,7 +216,7 @@ function generateAuthors() {
     console.log(author);
 
     /* find authors wrapper */
-    const authorWrapper = document.querySelector(optArticleAuthorSelector);
+    const authorWrapper = author.querySelector(optArticleAuthorSelector);
     console.log("AuthorWrapper", authorWrapper);
     /* make html variable with empty string */
     let html = '';
@@ -238,10 +238,10 @@ function addClickListenersToAuthors() {
   /* find all links to tags */
   const authorsLinks = document.querySelectorAll('href');
   /* START LOOP: for each link */
-  for (let authorsLink of authorsLinks) {
+  for (let authorLink of authorsLinks) {
 
     /* add tagClickHandler as event listener for that link */
-    authorsLink.addEventListener('click', authorClickHandler);
+    authorLink.addEventListener('click', authorClickHandler);
   }
   /* END LOOP: for each link */
 }
