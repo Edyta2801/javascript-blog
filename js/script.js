@@ -105,23 +105,23 @@ function clearTitleList() {
   document.querySelector(optTitleListSelector).innerHTML = '';
 }
 
-function calculateTagsParams(tags){
-const params={
-  min: 999999,
-  max: 0
-}
-for(let tag in tags){
-  console.log(tag + ' is used ' + tags[tag] + ' times');
-  if(tags[tag] > params.max){
-    params.max = tags[tag];
-  }else if (tags[tag] < params.min){
-    params.min = tags[tag];
+function calculateTagsParams(tags) {
+  const params = {
+    min: 999999,
+    max: 0
+  }
+  for (let tag in tags) {
+    console.log(tag + ' is used ' + tags[tag] + ' times');
+    if (tags[tag] > params.max) {
+      params.max = tags[tag];
+    } else if (tags[tag] < params.min) {
+      params.min = tags[tag];
+    }
+
+
   }
 
-
-}
-
-return params;
+  return params;
 };
 
 // GENERATE TAGS
@@ -180,6 +180,7 @@ function generateTags() {
       }
 
       /* END LOOP: for each tag */
+      html = html + linkHTML;
     }
 
     /* insert HTML of all the links into the tags wrapper */
@@ -187,14 +188,12 @@ function generateTags() {
 
     /* END LOOP: for every article: */
   }
-  /* [NEW] find list of tags in right column */
+  /*[NEW] find list of tags in right column*/
   const tagList = document.querySelector('.tags');
 
-  /* [NEW] add html from allTags to tagList */
-  // tagList.innerHTML = allTags.join(' ');
+  /*[NEW] add html from allTags to tagList */
+  //tagList.innerHTML = allTags.join(' ');
   console.log(allTags);
-
-
 
   const tagsParams = calculateTagsParams(allTags);
   console.log('tagsParams', tagsParams);
@@ -202,7 +201,21 @@ function generateTags() {
   /* [NEW] create variable for all links HTML code */
   let allTagsHTML = '';
 
+  /* {NEW} START LOOP: for each tag in allTags */
+  for (let tag in allTags) {
+    /* [NEW] generate code of link and add it to allTagsHTML */
+
+    const tagLinkHTML = '<li><a class"' + calculateTagsParams(allTags[tag], tagsParams) + '"</a></li>';
+
+    allTagsHTML += tagLinkHTML;
+
+    console.log('tagLinkHTML:', tagLinkHTML);
+  }
+  /* [NEW] END LOOP : for each tag in allTAgs: */
+  /*[NEW] add html from allTagsHTML to tagList */
+  tagList.innerHTML = allTagsHTML;
 }
+
 
 
 generateTags();
