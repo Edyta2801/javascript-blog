@@ -127,7 +127,7 @@ return params;
 // GENERATE TAGS
 
 function generateTags() {
-  /* [NEW] create a new variable allTags with an empty array */
+  /* [NEW] create a new variable allTags with an empty object */
   let allTags = {};
 
 
@@ -173,7 +173,7 @@ function generateTags() {
       /* [NEW] check if this link is NOT already in allTags */
       // "jeśli allTags NIE MA klucza tag".
       if (!allTags.hasOwnProperty(tag)) {
-        /* [NEW] add generated code to allTags array */
+        /* [NEW] add generated code to allTags object */
         allTags[tag] = 1;
       } else {
         allTags[tag]++;
