@@ -39,7 +39,7 @@ const optArticleSelector = '.post',
   optTitleListSelector = '.titles',
   optArticleTagsSelector = '.post-tags .list',
   optArticleAuthorSelector = '.post p.post-author',
-  optTagsListSelector = '.tags.list';
+  optTagsListSelector = '.tags .list';
 
 
 
@@ -122,14 +122,20 @@ function calculateTagsParams(tags) {
   }
 
   return params;
-};
+}
 
 // GENERATE TAGS
 
 function generateTags() {
   /* [NEW] create a new variable allTags with an empty object */
   let allTags = {};
+  console.log(allTags);
 
+  // Tablica allTags służy nam tutaj tylko za katalog,
+  //   który informuje nas, czy dany tag już widzieliśmy,
+  //     czy jeszcze nie.Jednocześnie jest zbiorem linków
+  //       (a konkretniej – tekstów, które zawierają kod HTML linków),
+  //       które później wstawiamy do listy tagów w prawej kolumnie.
 
   /* find all articles */
   const articles = document.querySelectorAll(optArticleSelector);
@@ -151,6 +157,7 @@ function generateTags() {
     let html = '';
 
     /* get tags from data-tags attribute */
+    // do każdego artykułu znajdujemy jego tagi
     const articleTags = article.getAttribute('data-tags');
     console.log(articleTags);
 
@@ -162,7 +169,7 @@ function generateTags() {
     /* START LOOP: for each tag */
     for (let tag of articleTagsArray) {
       console.log(tag);
-
+      // do każdego z tych tagów jest generowany kod HTML linka
       /* generate HTML of the link */
       const linkHTML = '<li><a href="#' + tag + '">' + tag + '</a></li>';
       console.log(linkHTML);
@@ -171,9 +178,12 @@ function generateTags() {
       html = html + linkHTML;
 
       /* [NEW] check if this link is NOT already in allTags */
+      // sprawdzamy czy dokładnie taki link mamy już w tablicy allTags
       // "jeśli allTags NIE MA klucza tag".
       if (!allTags.hasOwnProperty(tag)) {
+
         /* [NEW] add generated code to allTags object */
+        // jeżeli go nie mamy, dodajemy go do tablicy
         allTags[tag] = 1;
       } else {
         allTags[tag]++;
@@ -188,11 +198,16 @@ function generateTags() {
 
     /* END LOOP: for every article: */
   }
+
   /*[NEW] find list of tags in right column*/
+  // znajdujemy listę tagów i dodajemy do niej wszystkie linki znajdujące się w tablicy
   const tagList = document.querySelector('.tags');
 
   /*[NEW] add html from allTags to tagList */
+  // łącząc je ze sobą za pomocą spacji
   // tagList.innerHTML = allTags.join(' ');
+
+  //Liczba wystąpen danego tagu. ....Należy wyświetlić listę wystąpień w każdym z linków w prawej kolumnie
   console.log(allTags);
 
   const tagsParams = calculateTagsParams(allTags);
@@ -206,6 +221,7 @@ function generateTags() {
     /* [NEW] generate code of link and add it to allTagsHTML */
 
     const tagLinkHTML = '<li><a class"' + calculateTagsParams(allTags[tag], tagsParams) + '"</a></li>';
+    console.log(tagLinkHTML);
 
     allTagsHTML += tagLinkHTML;
 
