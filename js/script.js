@@ -414,21 +414,8 @@ function generateAuthors() {
 }
 
 generateAuthors();
-addClickListenersToTags();
-
-function addClickListenersToAuthors() {
-  /* find all links to tags */
-  const authorsLinks = document.querySelectorAll('.post p.post-autor');
-  /* START LOOP: for each link */
-  for (let authorLink of authorsLinks) {
-
-    /* add tagClickHandler as event listener for that link */
-    authorLink.addEventListener('click', authorClickHandler);
-  }
-  /* END LOOP: for each link */
-}
-
 addClickListenersToAuthors();
+
 
 function authorClickHandler(event) {
 
@@ -460,4 +447,24 @@ function authorClickHandler(event) {
   /* execute function "generateTitleLinks" with authore selector as argument */
   generateTitleLinks('[data-author="' + author + '"]');
 }
-// authorClickHandler();
+
+
+
+function addClickListenersToAuthors() {
+  /* find all links to tags */
+  // const authorsLinks = document.querySelectorAll('.post p.post-autor');
+  const authorsLinks = document.querySelectorAll('.post-author .list a');
+  console.log(authorsLinks);
+  /* START LOOP: for each link */
+  for (let authorLink of authorsLinks) {
+
+    /* add tagClickHandler as event listener for that link */
+    authorLink.addEventListener('click', authorClickHandler);
+  }
+  /* END LOOP: for each link */
+}
+
+
+
+
+
