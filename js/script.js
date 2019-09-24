@@ -250,10 +250,10 @@ function generateTags() {
     console.log(allTagsHTML);
 
 
-    const tagLinkHTML = '<li><a class"' + calculateTagClass(allTags[tag], tagsParams) + '"</a></li>';
-    console.log('tagLinkHTML:', tagLinkHTML);
+    // const tagLinkHTML = '<li><a class"' + calculateTagClass(allTags[tag], tagsParams) + '"</a></li>';
+    // console.log('tagLinkHTML:', tagLinkHTML);
 
-    allTagsHTML += tagLinkHTML;
+    // allTagsHTML += tagLinkHTML;
 
   }
   /* [NEW] END LOOP : for each tag in allTAgs: */
@@ -264,6 +264,7 @@ function generateTags() {
 
 
 generateTags();
+addClickListenersToTags();
 
 function tagClickHandler(event) {
   /* prevent default action for this event */
@@ -273,9 +274,9 @@ function tagClickHandler(event) {
   /* make a new constant "href" and read the attribute "href" of the clicked element */
   const href = clickedElement.getAttribute('href');
   /* make a new constant "tag" and extract tag from the "href" constant */
-  const tag = href.replace('#tag-', '');
+  const tag = href.replace('#', '');
   /* find all tag links with class active */
-  const activeTagLinks = document.querySelectorAll('a.active[href^=tag-"]');
+  const activeTagLinks = document.querySelectorAll('a.active[href^=#tag-"]');
   /* START LOOP: for each active tag link */
   for (let activeTagLink of activeTagLinks) {
     console.log(activeTagLink);
@@ -284,7 +285,7 @@ function tagClickHandler(event) {
     /* END LOOP: for each active tag link */
   }
   /* find all tag links with "href" attribute equal to the "href" constant */
-  const tagLinks = document.querySelectorAll('a[href=' + href + '"]');
+  const tagLinks = document.querySelectorAll('a[href="' + href + '"]');
   /* START LOOP: for each found tag link */
   for (let tagLink of tagLinks) {
     /* add class active */
@@ -297,7 +298,7 @@ function tagClickHandler(event) {
 
 function addClickListenersToTags() {
   /* find all links to tags */
-  const tagLinks = document.querySelectorAll('href');
+  const tagLinks = document.querySelectorAll('.post-tags .list a');
   /* START LOOP: for each link */
   for (let tagLink of tagLinks) {
 
@@ -307,7 +308,7 @@ function addClickListenersToTags() {
   /* END LOOP: for each link */
 }
 
-addClickListenersToTags();
+
 
 
 // GENERATE AUTHORS
