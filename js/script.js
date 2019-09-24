@@ -314,9 +314,34 @@ function addClickListenersToTags() {
 
 // GENERATE AUTHORS
 
+unction calculateAuthorsParams(authors){
+  const params =
+  {
+    max: 0,
+    min: 999999
+  }
+  for(let author in authors){
+    if(authors[author] > params.max){
+      params.max = authors[author];
+    } else {
+      if (authors[author] < params.min){
+        params.min = authors[author];
+    }
+  }
+  return params;
+}
+}
+
+function calculateAuthorClass(count, params){
+
+}
+
 function generateAuthors() {
+  /*/[New] create a new vairable allAuthors with an empty objet*/
+  let allAuthors = {};
+
   /* find all authors */
-  const authors = document.querySelectorAll(optArticleAuthorSelector);
+  const authors = document.querySelectorAll(optArticleSelector);
   console.log('Authors', authors);
 
   /* START LOOP: for every author: */
@@ -324,19 +349,19 @@ function generateAuthors() {
     console.log(author);
 
     /* find authors wrapper */
-    const authorsWrapper = author.querySelector(optArticleAuthorSelector);
-    console.log("AuthorWrapper", authorWrapper);
-    /* make html variable with empty string */
-    let html = '';
-    /* get authors from data-authors attribute */
-    const articleAuthor = author.getAttribute('data-author');
-    console.log('get authors from attribute', articleAuthor);
-    /* generate HTML of the link of authors*/
-    const authorHTML = '<a href="#' + articleAuthor + '">' + articleAuthor + '</a>';
+    authorsWrapper.insertAdjacentHTML('beforeend', authorHTML)
+
+    /*[NEW] check if this link is NOT already in allAuthors */
+    if(!allAuthors.hasOwnProperty(author)){
+      /* [NEW] add author to allAuthors object*/
+      allAuthors[author] = 1;
+    } else {
+      allAuthors[author]++;
+    }
     /* add generated code to html variable */
     html = html + authorHTML;
     /* insert HTML of all the links into the tags wrapper */
-    author.innerHTML = html;
+    authorsWrapper.innerHTML = html;
     /* END LOOP: for every author: */
   }
 }
