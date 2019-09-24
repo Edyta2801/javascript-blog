@@ -39,7 +39,9 @@ const optArticleSelector = '.post',
   optTitleListSelector = '.titles',
   optArticleTagsSelector = '.post-tags .list',
   optArticleAuthorSelector = '.post p.post-author',
-  optTagsListSelector = '.tags .list';
+  optTagsListSelector = '.tags .list',
+  optCloudClassCount = 5,
+  optCloudClassPrefix = 'tag-size-';
 
 
 
@@ -105,9 +107,10 @@ function clearTitleList() {
   document.querySelector(optTitleListSelector).innerHTML = '';
 }
 
+//finding the extreme numbers of the tag
 function calculateTagsParams(tags) {
   const params = {
-    min: 999999,
+    min: 9999,
     max: 0
   }
   for (let tag in tags) {
@@ -117,12 +120,29 @@ function calculateTagsParams(tags) {
     } else if (tags[tag] < params.min) {
       params.min = tags[tag];
     }
-
-
   }
-
   return params;
 }
+
+// choosing a class for the tag
+function calculateTagClass(count, params) {
+
+
+  const normalizedCount = count - params.min;
+  // Następnie zmniejszyliśmy 10 – również o 2:
+
+  const normalizedMax = params.max - params.min;
+  // W kolejnym kroku podzieliliśmy te dwie liczby – 4 i 8:
+
+  const percentage = normalizedCount / normalizedMax;
+  // I wreszcie, zastosowaliśmy algorytm znany z losowania liczby całkowitej:
+
+  const classNumber = Math.floor(percentage * (optCloudClassCount - 1) + 1);
+  return (optCloudClassPrefix, classNumber);
+
+}
+
+
 
 // GENERATE TAGS
 
@@ -211,7 +231,7 @@ function generateTags() {
   console.log(allTags);
 
   const tagsParams = calculateTagsParams(allTags);
-  console.log('tagsParams', tagsParams);
+  console.log('tagsParams:', tagsParams);
 
   /* [NEW] create variable for all links HTML code */
   let allTagsHTML = '';
@@ -223,8 +243,10 @@ function generateTags() {
     allTagsHTML += tag + '(' + allTags[tag] + ')';
     console.log(allTagsHTML);
 
-    const tagLinkHTML = '<li><a class"' + calculateTagsParams(allTags[tag], tagsParams) + '"</a></li>';
-    console.log(tagLinkHTML);
+
+
+    const tagLinkHTML = '<li><a class= '+ optCloudClassPrefix  + calculateTagClass(allTags[tag], tagsParams) + '</a></li>';
+    console.log('tagLinkHTML:', tagLinkHTML);
 
     allTagsHTML += tagLinkHTML;
 
