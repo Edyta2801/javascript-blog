@@ -40,6 +40,7 @@ const optArticleSelector = '.post',
   optArticleTagsSelector = '.post-tags .list',
   optArticleAuthorSelector = '.post p.post-author',
   optTagsListSelector = '.tags .list',
+  optAuthorListSelector='.list.autors',
   optCloudClassCount = 5,
   optCloudClassPrefix = 'tag-size-';
 
@@ -323,7 +324,7 @@ function generateAuthors() {
     console.log(author);
 
     /* find authors wrapper */
-    const authorWrapper = author.querySelector(optArticleAuthorSelector);
+    const authorsWrapper = author.querySelector(optArticleAuthorSelector);
     console.log("AuthorWrapper", authorWrapper);
     /* make html variable with empty string */
     let html = '';
@@ -340,10 +341,11 @@ function generateAuthors() {
   }
 }
 generateAuthors();
+addClickListenersToTags();
 
 function addClickListenersToAuthors() {
   /* find all links to tags */
-  const authorsLinks = document.querySelectorAll('href');
+  const authorsLinks = document.querySelectorAll('.post p.post-autor');
   /* START LOOP: for each link */
   for (let authorLink of authorsLinks) {
 
