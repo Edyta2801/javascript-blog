@@ -107,6 +107,9 @@ function clearTitleList() {
   document.querySelector(optTitleListSelector).innerHTML = '';
 }
 
+
+
+
 //finding the extreme numbers of the tag
 function calculateTagsParams(tags) {
   const params = {
@@ -138,6 +141,7 @@ function calculateTagClass(count, params) {
   // I wreszcie, zastosowaliśmy algorytm znany z losowania liczby całkowitej:
 
   const classNumber = Math.floor(percentage * (optCloudClassCount - 1) + 1);
+
   return (optCloudClassPrefix, classNumber);
 
 }
@@ -191,11 +195,13 @@ function generateTags() {
       console.log(tag);
       // do każdego z tych tagów jest generowany kod HTML linka
       /* generate HTML of the link */
-      const linkHTML = '<li><a href="#' + tag + '">' + tag + '</a></li>';
+      const linkHTML = `<li><a href=#${tag}>${tag}</a></li>`;
       console.log(linkHTML);
 
       /* add generated code to html variable */
-      html = html + linkHTML;
+      // html = html + linkHTML;
+      tagsWrapper.insertAdjacentHTML('beforeend', linkHTML);
+
 
       /* [NEW] check if this link is NOT already in allTags */
       // sprawdzamy czy dokładnie taki link mamy już w tablicy allTags
