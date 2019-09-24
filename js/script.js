@@ -464,7 +464,14 @@ function addClickListenersToAuthors() {
   /* END LOOP: for each link */
 }
 
+function addClickListenersSidebarToAuthors () {
+  const listSidebarAuthors = document.querySelectorAll('ul .list.authors a');
+  for(let listSidebarAuthor of listSidebarAuthors){
+  listSidebarAuthor.addEventListener('click', authorClickHandler)
+  }
+}
 
+addClickListenersSidebarToAuthors();
 
 
 
