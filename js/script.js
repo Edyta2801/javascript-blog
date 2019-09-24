@@ -352,15 +352,25 @@ function generateAuthors() {
   let allAuthors = {};
 
   /* find all authors */
-  const authors = document.querySelectorAll(optArticleSelector);
-  console.log('Authors', authors);
+  const articles = document.querySelectorAll(optArticleSelector);
+
 
   /* START LOOP: for every author: */
-  for (let author of authors) {
-    console.log(author);
+  for (let article of articles) {
 
-    /* find authors wrapper */
-    // authorsWrapper.insertAdjacentHTML('beforeend', authorHTML)
+    const authorsWrapper = article.querySelector(optArticleSelector);
+    console.log('authorsWrapper:', authorsWrapper);
+
+    /* make html variable with empty string */
+    let html = '';
+    /* get authors from data-authors attribute */
+    const articleAuthor = article.getAttribute('data-author');
+    /* generate HTML of the link of author */
+    const authorHTML = '<a href="#author-' + articleAuthor + '">' + articleAuthor + '</a>';
+
+    // /* find authors wrapper */
+    //     authorsWrapper.insertAdjacentHTML('beforeend', authorHTML)
+
 
     /*[NEW] check if this link is NOT already in allAuthors */
     if (!allAuthors.hasOwnProperty(author)) {
@@ -376,7 +386,7 @@ function generateAuthors() {
     /* END LOOP: for every author: */
   }
   /*[new] find list of authors in right column*/
-  const authorsList = document.querySelector('.authors');
+  const authorList = document.querySelector('.authors');
   console.log(allAuthors);
 
   const authorsParams = calculateAuthorsParams(allAuthors);
@@ -391,8 +401,9 @@ function generateAuthors() {
     allAuthorsHTML += `<li><a class="${optCloudAuthorClassPrefix + calculateAuthorClass(allAuthors[author], authorsParams)}" href="${author}"><span>${author}</span></a></li>`;
   }
   /* [new] add html from allAuthorsHTML to authorList*/
-  authorsList.innerHTML = allAuthorsHTML;
+  authorList.innerHTML = allAuthorsHTML;
 }
+
 generateAuthors();
 addClickListenersToTags();
 
@@ -419,7 +430,7 @@ function authorClickHandler(event) {
   /* make a new constant "href" and read the attribute "href" of the clicked element */
   const href = clickedElement.getAttribute('href');
   /* make a new constant "author" and extract author from the "href" constant */
-  const author = href.replace('#', '');
+  const author = href.replace('#author-', '');
   /* find all author links with class active */
   const activeAuthorLinks = document.querySelectorAll('.post-author a.active');
   /* START LOOP: for each active author link */
