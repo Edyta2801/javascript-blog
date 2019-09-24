@@ -240,12 +240,11 @@ function generateTags() {
   for (let tag in allTags) {
     /* [NEW] generate code of link and add it to allTagsHTML */
 
-    allTagsHTML += tag + '(' + allTags[tag] + ')';
+    allTagsHTML += `<li><a class= "${optCloudClassPrefix  + calculateTagClass(allTags[tag], tagsParams)}" href="${tag}"><span>${tag}</span></a></li>`;
     console.log(allTagsHTML);
 
 
-
-    const tagLinkHTML = '<li><a class= '+ optCloudClassPrefix  + calculateTagClass(allTags[tag], tagsParams) + '</a></li>';
+    const tagLinkHTML = '<li><a class"' + calculateTagClass(allTags[tag], tagsParams) + '"</a></li>';
     console.log('tagLinkHTML:', tagLinkHTML);
 
     allTagsHTML += tagLinkHTML;
