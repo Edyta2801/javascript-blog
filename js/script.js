@@ -42,6 +42,8 @@ const optArticleSelector = '.post',
   optTagsListSelector = '.tags .list',
   optAuthorListSelector='.list.autors',
   optCloudClassCount = 5,
+  optCloudAuthorClassCount = 3,
+  optCloudAuthorClassPrefix = 'author-size-',
   optCloudClassPrefix = 'tag-size-';
 
 
@@ -333,8 +335,16 @@ unction calculateAuthorsParams(authors){
 }
 
 function calculateAuthorClass(count, params){
+  const normalizedCount = count - params.min;
+  const normalizedMax = params.max - params.min;
+  const percentage = normalizedCount / normalizedMax;
+  const authorClassNumber = Math.floor( percentage * (optCloudAuthorClassCount - 1) + 1);
 
+
+  return(optCloudAuthorClassPrefix, authorClassNumber);
 }
+
+
 
 function generateAuthors() {
   /*/[New] create a new vairable allAuthors with an empty objet*/
