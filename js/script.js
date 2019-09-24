@@ -279,7 +279,7 @@ function tagClickHandler(event) {
   /* make a new constant "tag" and extract tag from the "href" constant */
   const tag = href.replace('#', '');
   /* find all tag links with class active */
-  const activeTagLinks = document.querySelectorAll('a.active[href^=#tag-"]');
+  const activeTagLinks = document.querySelectorAll('a.active[href^="#tag-"]');
   /* START LOOP: for each active tag link */
   for (let activeTagLink of activeTagLinks) {
     console.log(activeTagLink);
@@ -304,6 +304,15 @@ function addClickListenersToTags() {
   const tagLinks = document.querySelectorAll('.post-tags .list a');
   /* START LOOP: for each link */
   for (let tagLink of tagLinks) {
+
+    /* add tagClickHandler as event listener for that link */
+    tagLink.addEventListener('click', tagClickHandler);
+  }
+  /* END LOOP: for each link */
+
+  const tagLinksSidebar = document.querySelectorAll('.list.tags a');
+  /* START LOOP: for each link */
+  for (let tagLink of  tagLinksSidebar ) {
 
     /* add tagClickHandler as event listener for that link */
     tagLink.addEventListener('click', tagClickHandler);
@@ -358,7 +367,7 @@ function generateAuthors() {
   /* START LOOP: for every author: */
   for (let article of articles) {
 
-    const authorsWrapper = article.querySelector(optArticleSelector);
+    const authorsWrapper = article.querySelector(optArticleAuthorSelector);
     console.log('authorsWrapper:', authorsWrapper);
 
     /* make html variable with empty string */
@@ -373,11 +382,11 @@ function generateAuthors() {
 
 
     /*[NEW] check if this link is NOT already in allAuthors */
-    if (!allAuthors.hasOwnProperty(author)) {
+    if (!allAuthors.hasOwnProperty(articleAuthor)) {
       /* [NEW] add author to allAuthors object*/
-      allAuthors[author] = 1;
+      allAuthors[articleAuthor] = 1;
     } else {
-      allAuthors[author]++;
+      allAuthors[articleAuthor]++;
     }
     /* add generated code to html variable */
     html = html + authorHTML;
