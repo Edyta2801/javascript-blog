@@ -1,5 +1,30 @@
 'use strict'
 
+const opt={
+  articleSelector : '.post',
+  titleSelector : '.post-title',
+  titleListSelector : '.titles',
+  articleTagsSelector : '.post-tags .list',
+  articleAuthorSelector : '.post p.post-author',
+  tagsListSelector : '.tags.list',
+  authorsListSelector : '.authors.list',
+  //  opts.tagSizes.cloudClassCount : 5,
+  //  opts.authorSizes.cloudAuthorClassCount :3,
+  //  opts.authorSizes.cloudAuthorClassPrefix : 'author-size-',
+  //  opts.tagSizes.cloudClassPrefix : 'tag-size-'
+};
+
+const opts = {
+  tagSizes: {
+    cloudClassCount: 5,
+    cloudClassPrefix : 'tag-size-',
+  },
+  authorSizes:{
+    cloudAuthorClassCount :3,
+    cloudAuthorClassPrefix : 'author-size-',
+  },
+};
+
 const titleClickHandler = function (event) {
 
   const clickedElement = this;
@@ -34,18 +59,6 @@ const titleClickHandler = function (event) {
 // GENERATE TITLES LINKS
 
 
-const optArticleSelector = '.post',
-  optTitleSelector = '.post-title',
-  optTitleListSelector = '.titles',
-  optArticleTagsSelector = '.post-tags .list',
-  optArticleAuthorSelector = '.post p.post-author',
-  optTagsListSelector = '.tags.list',
-  optAuthorsListSelector = '.authors.list',
-  optCloudClassCount = 5,
-  optCloudAuthorClassCount = 3,
-  optCloudAuthorClassPrefix = 'author-size-',
-  optCloudClassPrefix = 'tag-size-';
-
 
 
 
@@ -54,14 +67,14 @@ function generateTitleLinks(customSelector = '') {
   console.log(customSelector);
 
   /* remove contents of titleList */
-  const titleList = document.querySelector(optTitleListSelector);
+  const titleList = document.querySelector(opt.titleListSelector);
   console.log(titleList);
 
   clearTitleList();
 
 
   /* for each article */
-  const articles = document.querySelectorAll(optArticleSelector + customSelector);
+  const articles = document.querySelectorAll(opt.articleSelector + customSelector);
   console.log(articles);
 
   let html = '';
@@ -78,7 +91,7 @@ function generateTitleLinks(customSelector = '') {
     /* get the title from the title element */
     // Do znalezienia elementu w konkretnym artykule wykorzystamy querySelector wywołany na artykule.
 
-    const articleTitle = article.querySelector(optTitleSelector).innerHTML;
+    const articleTitle = article.querySelector(opt.titleSelector).innerHTML;
 
     /* create HTML of the link */
     const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
@@ -106,7 +119,7 @@ function generateTitleLinks(customSelector = '') {
 generateTitleLinks();
 
 function clearTitleList() {
-  document.querySelector(optTitleListSelector).innerHTML = '';
+  document.querySelector(opt.titleListSelector).innerHTML = '';
 }
 
 
@@ -142,9 +155,9 @@ function calculateTagClass(count, params) {
   const percentage = normalizedCount / normalizedMax;
   // I wreszcie, zastosowaliśmy algorytm znany z losowania liczby całkowitej:
 
-  const classNumber = Math.floor(percentage * (optCloudClassCount - 1) + 1);
+  const classNumber = Math.floor(percentage * (opts.tagSizes.cloudClassCount - 1) + 1);
 
-  return (optCloudClassPrefix, classNumber);
+  return ( opts.tagSizes.cloudClassPrefix, classNumber);
 
 }
 
@@ -164,7 +177,7 @@ function generateTags() {
   //       które później wstawiamy do listy tagów w prawej kolumnie.
 
   /* find all articles */
-  const articles = document.querySelectorAll(optArticleSelector);
+  const articles = document.querySelectorAll(opt.articleSelector);
   console.log(articles);
 
 
@@ -174,7 +187,7 @@ function generateTags() {
 
 
     /* find tags wrapper */
-    const tagsWrapper = article.querySelector(optArticleTagsSelector);
+    const tagsWrapper = article.querySelector(opt.articleTagsSelector);
     console.log('tagsWrapper:', tagsWrapper);
 
 
@@ -249,7 +262,7 @@ function generateTags() {
   for (let tag in allTags) {
     /* [NEW] generate code of link and add it to allTagsHTML */
 
-    allTagsHTML += `<li><a class= "${optCloudClassPrefix + calculateTagClass(allTags[tag], tagsParams)}" href="${tag}"><span>${tag}</span></a></li>`;
+    allTagsHTML += `<li><a class= "${ opts.tagSizes.cloudClassPrefix + calculateTagClass(allTags[tag], tagsParams)}" href="${tag}"><span>${tag}</span></a></li>`;
     console.log(allTagsHTML);
 
 
@@ -350,10 +363,10 @@ function calculateAuthorClass(count, params) {
   const normalizedCount = count - params.min;
   const normalizedMax = params.max - params.min;
   const percentage = normalizedCount / normalizedMax;
-  const authorClassNumber = Math.floor(percentage * (optCloudAuthorClassCount - 1) + 1);
+  const authorClassNumber = Math.floor(percentage * (opts.authorSizes.cloudAuthorClassCount - 1) + 1);
 
 
-  return (optCloudAuthorClassPrefix, authorClassNumber);
+  return (opts.authorSizes.cloudAuthorClassPrefix, authorClassNumber);
 }
 
 
@@ -364,13 +377,13 @@ function generateAuthors() {
   console.log(allAuthors);
 
   /* find all authors */
-  const articles = document.querySelectorAll(optArticleSelector);
+  const articles = document.querySelectorAll(opt.articleSelector);
   console.log(articles);
 
   /* START LOOP: for every article: */
   for (let article of articles) {
 
-    const authorsWrapper = article.querySelector(optArticleAuthorSelector);
+    const authorsWrapper = article.querySelector(opt.articleAuthorSelector);
     console.log('authorsWrapper:', authorsWrapper);
 
     /* make html variable with empty string */
@@ -416,8 +429,8 @@ function generateAuthors() {
   /* [new] START LOOP: for each author in allAuthors */
   for (let articleAuthor in allAuthors) {
     /*[new] generate code of link and add it to allAuthorsHTML */
-    // allAuthorsHTML += `<li><a class="${optCloudAuthorClassPrefix + calculateAuthorClass(allAuthors[articleAuthor], authorsParams)}" href="$articleAuthor{}"><span>${articleAuthor}</span></a></li>`;
-    const authorLinkHTML = '<li><a class="' + optCloudClassPrefix + calculateAuthorClass(allAuthors[articleAuthor], authorsParams) + '"' + 'href="#author-' + articleAuthor + '"><span>' + articleAuthor + '</span></a></li>';
+    // allAuthorsHTML += `<li><a class="${opts.authorSizes.cloudAuthorClassPrefix + calculateAuthorClass(allAuthors[articleAuthor], authorsParams)}" href="$articleAuthor{}"><span>${articleAuthor}</span></a></li>`;
+    const authorLinkHTML = '<li><a class="' + opts.tagSizes.cloudClassPrefix + calculateAuthorClass(allAuthors[articleAuthor], authorsParams) + '"' + 'href="#author-' + articleAuthor + '"><span>' + articleAuthor + '</span></a></li>';
     console.log('authorLinkHTML', authorLinkHTML);
     allAuthorsHTML = allAuthorsHTML + authorLinkHTML;
 
