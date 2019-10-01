@@ -4,6 +4,8 @@ const templates = {
   articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
   tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
   authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML),
+
+
 };
 
 // const opt={
@@ -238,7 +240,7 @@ function generateTags() {
       // do każdego z tych tagów jest generowany kod HTML linka
       /* generate HTML of the link */
       // const linkHTML = `<li><a href=#${tag}>${tag}</a></li>`;
-      const linkHTMLData = { id: { tag }, title: { tag } };
+      const linkHTMLData = { id: tag , title:  tag };
       const linkHTML = templates.tagLink(linkHTMLData);
       console.log(linkHTML);
 
