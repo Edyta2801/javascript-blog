@@ -1,8 +1,10 @@
 'use strict'
 
 const templates = {
-  articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML)
-}
+  articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
+  tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
+
+};
 
 // const opt={
 //   articleSelector : '.post',
@@ -17,18 +19,18 @@ const templates = {
 const opts = {
   tagSizes: {
     cloudClassCount: 5,
-    cloudClassPrefix : 'tag-size-',
+    cloudClassPrefix: 'tag-size-',
   },
-  authorSizes:{
-    cloudAuthorClassCount :3,
-    cloudAuthorClassPrefix : 'author-size-',
+  authorSizes: {
+    cloudAuthorClassCount: 3,
+    cloudAuthorClassPrefix: 'author-size-',
   },
 };
 
 const select = {
   all: {
     articleSelector: '.post',
-    titleSelector : '.post-title',
+    titleSelector: '.post-title',
     linksTo: {
       tags: 'a[href^="#tag-"]',
       authors: 'a[href^="#author-"]',
@@ -118,7 +120,7 @@ function generateTitleLinks(customSelector = '') {
 
     /* create HTML of the link */
     // const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
-    const linkHTMLData = {id: articleId, title: articleTitle};
+    const linkHTMLData = { id: articleId, title: articleTitle };
     const linkHTML = templates.articleLink(linkHTMLData);
     console.log(linkHTML);
 
@@ -182,7 +184,7 @@ function calculateTagClass(count, params) {
 
   const classNumber = Math.floor(percentage * (opts.tagSizes.cloudClassCount - 1) + 1);
 
-  return ( opts.tagSizes.cloudClassPrefix, classNumber);
+  return (opts.tagSizes.cloudClassPrefix, classNumber);
 
 }
 
@@ -235,7 +237,9 @@ function generateTags() {
       console.log(tag);
       // do każdego z tych tagów jest generowany kod HTML linka
       /* generate HTML of the link */
-      const linkHTML = `<li><a href=#${tag}>${tag}</a></li>`;
+      // const linkHTML = `<li><a href=#${tag}>${tag}</a></li>`;
+      const linkHTMLData = { id: {tag}, title: {tag} };
+      const linkHTML = templates.tagLink(linkHTMLData);
       console.log(linkHTML);
 
 
@@ -287,7 +291,7 @@ function generateTags() {
   for (let tag in allTags) {
     /* [NEW] generate code of link and add it to allTagsHTML */
 
-    allTagsHTML += `<li><a class= "${ opts.tagSizes.cloudClassPrefix + calculateTagClass(allTags[tag], tagsParams)}" href="${tag}"><span>${tag}</span></a></li>`;
+    allTagsHTML += `<li><a class= "${opts.tagSizes.cloudClassPrefix + calculateTagClass(allTags[tag], tagsParams)}" href="${tag}"><span>${tag}</span></a></li>`;
     console.log(allTagsHTML);
 
 
