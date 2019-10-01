@@ -3,7 +3,7 @@
 const templates = {
   articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
   tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
-
+  authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML),
 };
 
 // const opt={
@@ -238,7 +238,7 @@ function generateTags() {
       // do każdego z tych tagów jest generowany kod HTML linka
       /* generate HTML of the link */
       // const linkHTML = `<li><a href=#${tag}>${tag}</a></li>`;
-      const linkHTMLData = { id: {tag}, title: {tag} };
+      const linkHTMLData = { id: { tag }, title: { tag } };
       const linkHTML = templates.tagLink(linkHTMLData);
       console.log(linkHTML);
 
@@ -425,8 +425,9 @@ function generateAuthors() {
     /* generate HTML of the link of author */
     const authorHTML = `<a href=#${article}>${articleAuthor}</a>`;
     console.log(authorHTML);
-    const linkHTML = '<a href="#author-' + articleAuthor + '">' + articleAuthor + '</a>'
-    console.log(linkHTML);
+    // const linkHTML = '<a href="#author-' + articleAuthor + '">' + articleAuthor + '</a>'
+    const linkHTMLData = { id: articleAuthor, title: articleAuthor };
+    const linkHTML = templates.authorLink(linkHTMLData); console.log(linkHTML);
 
     // /* find authors wrapper */
     authorsWrapper.insertAdjacentHTML('beforeend', authorHTML)
