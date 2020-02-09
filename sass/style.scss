@@ -75,6 +75,14 @@ body {
   font-size: 104px;
   line-height: 1;
   text-align: center;
+  text-decoration: none;
+}
+.logo a {
+  text-decoration: none;
+  color: $color-dark;
+  &:hover{
+    font-weight: bold;
+  }
 }
 
 /* Lists */
@@ -130,7 +138,6 @@ body {
     margin: 0 10px 0 0;
   }
 }
-
 
 .tag-size-1 {
   color: black;

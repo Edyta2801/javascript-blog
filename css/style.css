@@ -67,6 +67,16 @@ body {
   font-size: 104px;
   line-height: 1;
   text-align: center;
+  text-decoration: none;
+}
+
+.logo a {
+  text-decoration: none;
+  color: #444;
+}
+
+.logo a:hover {
+  font-weight: bold;
 }
 
 /* Lists */
