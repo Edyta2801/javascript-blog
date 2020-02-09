@@ -541,8 +541,18 @@ function addClickListenersToAuthors() {
 }
 
 
+function addClickListenersToLogo(){
+  const logoLink=document.querySelector('.logo a');
+  console.log(logoLink);
+  logoLink.addEventListener('click', gohome)
+}
+addClickListenersToLogo();
 
 
+function gohome()
+{
+window.location.href="../index.html"
+}
 
 
 // function addClickListenersSidebarToAuthors() {
