@@ -1,5 +1,5 @@
 
-# [JavaScript-blog](https://edyta2801.github.io/rock-paper-scissors/)
+# [JavaScript-blog](https://edyta2801.github.io/javascript-blog/)
 > Simple JavaScript App.
 
 
