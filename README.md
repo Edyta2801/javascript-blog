@@ -1,5 +1,3 @@
-https://edyta2801.github.io/javascript-blog/
-
 
 # [JavaScript-blog](https://edyta2801.github.io/rock-paper-scissors/)
 > Simple JavaScript App.
